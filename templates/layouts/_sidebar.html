@@ -1,0 +1,148 @@
+
+<div class="flex flex-col h-full bg-gray-900 text-white">
+
+    <!-- Logo -->
+    <div class="flex items-center justify-between px-6 py-5 border-b border-gray-800">
+
+        <h1 class="text-xl font-bold">
+            IMS
+        </h1>
+
+        <!-- Close Button (Mobile Only) -->
+        <button
+            onclick="closeSidebar()"
+            class="md:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+
+                <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 px-4 py-6 overflow-y-auto">
+
+        <ul class="space-y-2">
+
+            <!-- Dashboard -->
+            <li>
+                <a href="{% url 'login:dashboard' %}"
+                    class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition duration-200
+                    {% if request.resolver_match.url_name == 'dashboard' %}
+                        bg-gray-800 text-white
+                    {% else %}
+                        hover:bg-gray-800 text-gray-300
+                    {% endif %}">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5 shrink-0"
+                        viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M3 13h8V3H3v10zm10 8h8V11h-8v10zm0-18v6h8V3h-8zM3 21h8v-6H3v6z"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Products -->
+            <li>
+                <a href="{% url 'inventory:product' %}"
+                    class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition duration-200
+                    {% if request.resolver_match.url_name == 'product' %}
+                        bg-gray-800 text-white
+                    {% else %}
+                        hover:bg-gray-800 text-gray-300
+                    {% endif %}">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+
+                        <path stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M20 13V7a2 2 0 00-2-2h-3m-4 0H6a2 2 0 00-2 2v6m16 0v4a2 2 0 01-2 2h-3m-4 0H6a2 2 0 01-2-2v-4m16 0H4" />
+                    </svg>
+                    <span>Products</span>
+                </a>
+            </li>
+    
+            <!-- Inventory -->
+             <li>
+                <a href="{% url 'inventory:inventory' %}"
+                    class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition duration-200
+                    {% if request.resolver_match.url_name == 'inventory' %}
+                        bg-gray-800 text-white
+                    {% else %}
+                        hover:bg-gray-800 text-gray-300
+                    {% endif %}">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+
+                        <path stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 17v-6h13v6M9 5v6h13V5M3 5h2v14H3V5z" />
+                    </svg>
+                    <span>inventory</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Bottom Section Logout -->
+    <div class="border-t border-gray-800 p-4">
+       <form action="{% url 'login:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit"
+                class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-red-600 transition duration-200 w-full text-left">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+
+                    <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10V5" />
+                </svg>
+
+                <span>Logout</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+// Handle Sidebar
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("sidebar-overlay");
+
+function openSidebar() {
+    sidebar.classList.remove("-translate-x-full");
+    overlay.classList.remove("hidden");
+}
+
+function closeSidebar() {
+    sidebar.classList.add("-translate-x-full");
+    overlay.classList.add("hidden");
+}
+
+overlay.addEventListener("click", closeSidebar);
+
+// Make sidebar globally accessible
+window.openSidebar = openSidebar;
+window.closeSidebar = closeSidebar;
+</script>

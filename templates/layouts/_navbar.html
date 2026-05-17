@@ -1,0 +1,50 @@
+<nav class="bg-gray-900 text-white px-4 py-4 shadow-md">
+    <div class="flex items-center justify-between">
+
+        <!-- Left -->
+        <div class="flex items-center gap-4">
+
+            <!-- Mobile Sidebar Toggle -->
+            <button
+                onclick="openSidebar()"
+                class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-7 w-7"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+
+                    <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Right -->
+       <div class="flex items-center gap-3">
+            {% if user.profile %}
+                {% if user.profile.url %}
+                    <img src="{{ user.profile.url }}"
+                        alt="Profile"
+                        class="h-9 w-9 rounded-full object-cover border border-gray-600">
+                {% else %}
+                    <div class="h-9 w-9 rounded-full bg-gray-700 flex items-center justify-center text-sm font-semibold">
+                        {{ user.first_name|first }}{{ user.last_name|first }}
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="h-9 w-9 rounded-full bg-gray-700 flex items-center justify-center text-sm font-semibold">
+                    {{ user.first_name|first }}{{ user.last_name|first }}
+                </div>
+            {% endif %}
+
+            <div class="text-sm leading-tight">
+                <div class="font-semibold">
+                    {{ user.first_name }} {{ user.last_name }}
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
