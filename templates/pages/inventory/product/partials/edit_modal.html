@@ -1,0 +1,29 @@
+<div id="editModal{{ product.id }}"
+     class="hidden fixed inset-0 z-50 bg-gray-700/50 flex justify-center items-center"
+     onclick="closeModal('editModal{{ product.id }}')">
+
+    <div class="bg-white w-full max-h-screen max-w-lg p-6 rounded-lg shadow-lg overflow-y-auto"
+         onclick="event.stopPropagation()">
+
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">Edit Product</h2>
+
+            <button onclick="closeModal('editModal{{ product.id }}')"
+                    class="text-gray-600 cursor-pointer hover:text-gray-800 transition">
+                ✕
+            </button>
+        </div>
+
+        <form method="POST"
+              action="{% url 'inventory:product.update' product.id %}"
+              enctype="multipart/form-data">
+
+              {% include 'pages/inventory/product/partials/product_form.html' %}
+
+            <button type="submit"
+                    class="w-full bg-brand-lime text-white py-2 rounded hover:opacity-90 transition">
+                Update Product
+            </button>
+        </form>
+    </div>
+</div>

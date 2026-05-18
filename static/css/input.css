@@ -1,1 +1,58 @@
 @import "tailwindcss";
+
+@layer theme {
+  :root {
+    /* Brand Colors from App Logo using OKLCH */
+    --color-brand-teal: oklch(59% 0.2 210);
+    --color-brand-orange: oklch(70% 0.2 40);
+    --color-brand-lime: oklch(75% 0.2 130);
+  }
+  
+  @supports (color: var(--test)) {
+    :root {
+      color-scheme: light dark;
+    }
+  }
+}
+
+@layer utilities {
+  .bg-brand-teal {
+    @apply bg-[oklch(59%_0.2_210)];
+  }
+  .hover\:bg-brand-teal {
+    @apply hover:bg-[oklch(59%_0.2_210)];
+  }
+  .text-brand-teal {
+    @apply text-[oklch(59%_0.2_210)];
+  }
+  .hover\:text-brand-teal {
+    @apply hover:text-[oklch(59%_0.2_210/0.8)];
+  }
+  .bg-brand-orange {
+    @apply bg-[oklch(70%_0.2_40)];
+  }
+  .hover\:opacity-90 {
+    @apply hover:opacity-90;
+  }
+  .text-brand-orange {
+    @apply text-[oklch(70%_0.2_40)];
+  }
+  .bg-brand-lime {
+    @apply bg-[oklch(75%_0.2_130)];
+  }
+  .text-brand-lime {
+    @apply text-[oklch(75%_0.2_130)];
+  }
+  .focus\:ring-brand-teal {
+    @apply focus:ring-[oklch(59%_0.2_210)];
+  }
+  .border-brand-teal {
+    @apply border-[oklch(59%_0.2_210)];
+  }
+  .hover\:border-brand-teal {
+    @apply hover:border-[oklch(59%_0.2_210)];
+  }
+  .accent-brand-teal {
+    @apply accent-[oklch(59%_0.2_210)];
+  }
+}

@@ -1,4 +1,4 @@
-<nav class="bg-gray-900 text-white px-4 py-4 shadow-md">
+<nav class="bg-brand-teal text-white px-4 py-4 shadow-md">
     <div class="flex items-center justify-between">
 
         <!-- Left -->
@@ -30,12 +30,12 @@
                         alt="Profile"
                         class="h-9 w-9 rounded-full object-cover border border-gray-600">
                 {% else %}
-                    <div class="h-9 w-9 rounded-full bg-gray-700 flex items-center justify-center text-sm font-semibold">
+                    <div class="h-9 w-9 rounded-full bg-brand-lime flex items-center justify-center text-sm font-semibold">
                         {{ user.first_name|first }}{{ user.last_name|first }}
                     </div>
                 {% endif %}
             {% else %}
-                <div class="h-9 w-9 rounded-full bg-gray-700 flex items-center justify-center text-sm font-semibold">
+                <div class="h-9 w-9 rounded-full bg-brand-lime flex items-center justify-center text-sm font-semibold">
                     {{ user.first_name|first }}{{ user.last_name|first }}
                 </div>
             {% endif %}

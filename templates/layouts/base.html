@@ -23,7 +23,7 @@
         <!-- Sidebar -->
         <aside
             id="sidebar"
-            class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white transform -translate-x-full transition-transform duration-300 ease-in-out md:translate-x-0 md:static md:shrink-0"
+            class="fixed inset-y-0 left-0 z-50 w-64 bg-brand-teal text-white transform -translate-x-full transition-transform duration-300 ease-in-out md:translate-x-0 md:static md:shrink-0"
         >
             {% include "layouts/_sidebar.html" %}
         </aside>
@@ -54,6 +54,10 @@
             </footer>
 
         </div>
+        <!-- Delete Confirmation Modal -->
+        {% include "components/DeleteModal.html" %}
+
+        <!-- Toast Notification -->
         {% if messages %}
             {% for message in messages %}
                 {% include "components/ToastNotification.html" with message=message message_type=message.tags %}

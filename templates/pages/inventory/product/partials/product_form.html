@@ -1,0 +1,125 @@
+{% csrf_token %}
+
+<div class="mb-4">
+    <label class="block text-sm font-medium mb-2 text-gray-700">Product Image</label>
+
+    <div class="drop-area border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-brand-teal transition">
+
+        <input type="file"
+               name="product_image"
+               class="product_image hidden"
+               accept="image/*">
+
+        <p class="text-sm text-gray-500">
+            Drag & drop an image here or
+            <span class="text-brand-teal underline">browse</span>
+        </p>
+
+        <img
+            class="preview mt-3 mx-auto max-h-24 rounded-lg shadow
+            {% if not product.product_image %}hidden{% endif %}"
+
+            {% if product.product_image %}
+                src="{{ product.product_image.url }}"
+            {% endif %}
+        />
+    </div>
+
+    <p class="error text-red-500 text-sm mt-2 hidden"></p>
+</div>
+
+<div class="mb-3">
+    <label class="block text-sm font-medium mb-2 text-gray-700">Product Name</label>
+    <input
+        type="text"
+        name="product_name"
+        value="{{ product.product_name|default:'' }}"
+        placeholder="Enter product name"
+        class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg text-gray-900 placeholder-gray-500
+               focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition"
+        required>
+</div>
+
+<div class="mb-3">
+    <label class="block text-sm font-medium mb-2 text-gray-700">Description</label>
+    <textarea
+        name="description"
+        placeholder="Enter product description"
+        class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg text-gray-900 placeholder-gray-500
+               focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition resize-vertical"
+        rows="4">{{ product.description|default:'' }}</textarea>
+</div>
+
+<div class="mb-3">
+    <label class="block text-sm font-medium mb-2 text-gray-700">Category</label>
+    <select name="category" 
+        class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg text-gray-900
+               focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition cursor-pointer" 
+        required>
+        <option value="" disabled selected>Select a category</option>
+        {% for category in categories %}
+            <option
+                value="{{ category.id }}"
+                {% if product.category.id == category.id %}selected{% endif %}>
+                {{ category.name }}
+            </option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="mb-3">
+    <label class="block text-sm font-medium mb-2 text-gray-700">Selling Price</label>
+    <input
+        type="number"
+        step="0.01"
+        name="selling_price"
+        value="{{ product.selling_price|default:'' }}"
+        placeholder="0.00"
+        class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg text-gray-900 placeholder-gray-500
+               focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition"
+        required>
+</div>
+
+<div class="mb-3">
+    <label class="block text-sm font-medium mb-2 text-gray-700">Buying Price</label>
+    <input
+        type="number"
+        step="0.01"
+        name="buying_price"
+        value="{{ product.buying_price|default:'' }}"
+        placeholder="0.00"
+        class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg text-gray-900 placeholder-gray-500
+               focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition"
+        required>
+</div>
+
+<div class="mb-3">
+    <label class="block text-sm font-medium mb-2 text-gray-700">Low Stock Threshold</label>
+    <input
+        type="number"
+        name="low_stock_threshold"
+        value="{{ product.low_stock_threshold|default:10 }}"
+        placeholder="10"
+        class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg text-gray-900 placeholder-gray-500
+               focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition">
+</div>
+
+<div class="mb-3">
+    <label class="block text-sm font-medium mb-2 text-gray-700">SKU</label>
+    <input
+        type="text"
+        name="sku"
+        value="{{ product.sku|default:'' }}"
+        placeholder="Stock Keeping Unit"
+        class="w-full px-3 py-2 border-2 border-gray-300 rounded-lg text-gray-900 placeholder-gray-500
+               focus:ring-2 focus:ring-brand-teal focus:border-brand-teal outline-none transition">
+</div>
+
+<div class="mb-3">
+    <label class="block text-sm">Barcode</label>
+    <input
+        type="text"
+        name="barcode"
+        value="{{ product.barcode|default:'' }}"
+        class="w-full border p-2 rounded">
+</div>
