@@ -98,9 +98,10 @@ def add_product(request):
                     product_image=product_image,
                     status=True
                 )
-
-                return redirect("products")
-
+                
+                messages.success(request, "Product added successfuly!")
+                return redirect("inventory:product")
+            
             except IntegrityError:
                 errors.append("Product name already exists.")
             except Exception as e:
@@ -110,3 +111,18 @@ def add_product(request):
         "categories": categories,
         "errors": errors
     })
+
+
+
+@login_required
+def edit_product(product_id):
+    pass
+
+
+@login_required
+def update_product(request, product_id):
+    pass
+
+@login_required
+def delete_product(request):
+    pass
